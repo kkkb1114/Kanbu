@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "232040673356",
+    "project_id": "pt-kkanbu",
+    "storage_bucket": "pt-kkanbu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232040673356:android:ba5d18ed8152184a6884e9",
+        "android_client_info": {
+          "package_name": "com.example.pt_kkanbu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232040673356-cplenbam5ottrkdgj98n6n0ihe936gaj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pt_kkanbu",
+            "certificate_hash": "676cfb20add282b2d9a5c5618c86f22f01bcf6c1"
+          }
+        },
+        {
+          "client_id": "232040673356-uabjgcfso7c9a4ftsni2u6vjosufcudd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf8EVBuMUbevXzBBUlMrGpHlkFP6Ym-5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232040673356-uabjgcfso7c9a4ftsni2u6vjosufcudd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

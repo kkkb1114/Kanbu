@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Kanbu</string>
+    <string name="Logout">로그아웃</string>
+    <string name="secession">회원탈퇴</string>
+    <string name="facebook_app_id">948787895752557</string>
+    <string name="fb_login_protocol_scheme">fb948787895752557</string>
+    <string name="main_apptitle">PT_Kanbu</string>
+    <string name="myCarList">내 차 목록</string>
+    <string name="connect">연결</string>
+    <string name="setting">설정</string>
+    <string name="open">열기</string>
+    <string name="closed">닫기</string>
+    <string name="myCarDiagnosis">내 차 진단하기</string>
+    <string name="Confirm">확인</string>
+    <string name="connection_method">연결 방식</string>
+    <string name="Connection_settings">연결 설정</string>
+    <string name="Connectable_devices">연결 가능한 디바이스</string>
+    <string name="Ascending">오름차순</string>
+    <string name="Standard_OBD2_data">표준 OBD2 데이터</string>
+    <string name="NoData">N/A</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="bluetooth_le_4_0">Bluetooth LE 4.0</string>
+    <string name="wi_fi">WI-FI</string>
+    <string name="Protocol_and_Data">프로토콜 &amp; 데이터</string>
+</resources>

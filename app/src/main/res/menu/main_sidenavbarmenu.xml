@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/myCarList"
+        android:title="@string/myCarList"
+        app:showAsAction="never"
+        android:icon="@drawable/car_icon_145832"/>
+
+    <item
+        android:id="@+id/connect"
+        android:title="@string/connect"
+        app:showAsAction="never"
+        android:icon="@drawable/very_basic_link_icon"/>
+
+    <item
+        android:id="@+id/setting"
+        android:title="@string/setting"
+        app:showAsAction="never"
+        android:icon="@drawable/_904675_configuration_edit_gear_options_preferences_setting_settings_122525"/>
+    </group>
+</menu>

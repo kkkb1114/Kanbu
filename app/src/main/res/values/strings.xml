@@ -22,4 +22,7 @@
     <string name="bluetooth_le_4_0">Bluetooth LE 4.0</string>
     <string name="wi_fi">WI-FI</string>
     <string name="Protocol_and_Data">프로토콜 &amp; 데이터</string>
+    <string name="monitoring">모니터링</string>
+    <string name="Diagnosis">차량 진단</string>
+    <string name="terminal">터미널</string>
 </resources>

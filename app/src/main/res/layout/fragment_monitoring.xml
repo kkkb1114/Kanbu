@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#26039BE5">
+    android:background="#1A039BE5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:background="#03A9F4"
             android:padding="10dp"
-            android:text="@string/connection_method"
+            android:text="@string/Standard_OBD2_data"
             android:textColor="@color/white"
             android:textSize="20dp"
             app:layout_constraintTop_toTopOf="parent" />

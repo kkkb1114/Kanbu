@@ -30,6 +30,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:layout_gravity="left"
-        app:menu="@menu/main_sidenavbarmenu"/>
+        app:menu="@menu/main_sidenavbarmenu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.kanbu"
-        minSdkVersion 30
+        minSdkVersion 28
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -23,12 +23,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
+    buildFeatures {
+        dataBinding = true
+    }
+
 }
 
 dependencies {
+
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
@@ -48,4 +53,9 @@ dependencies {
     // 레트로핏 의존성 추가
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // MVVM 패턴 사용을 위한 데이터 실시간 체크 및 갱신을 위한 lifecycle을 사용하기 위한 라이브러리
+    def lifecycle_version = "2.2.0"
+    implementation("android.arch.lifecycle:extensions:$lifecycle_version")
+
 }

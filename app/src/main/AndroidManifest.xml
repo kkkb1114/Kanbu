@@ -2,8 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kanbu">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--안드로이드 12부터는 FINE만 요청하면 권한 요청 일부를 무시할 수가 있다.-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 앱이 블루투스 기기를 찾는 경우에만 필요합니다.
+            이 권한에 속성을 추가하거나 다음을 선언해야 합니다.
+            ACCESS_FINE_LOCATION 권한, 결과에 따라
+            앱에서 위치 사용을 확인합니다. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
+    <!-- 앱이 블루투스에서 기기를 검색할 수 있도록 하는 경우에만 필요합니다.
+           장치. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
+    <!-- 앱이 이미 페어링된 블루투스와 통신하는 경우에만 필요합니다.
+         장치. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +31,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kanbu">
-        <activity android:name=".MainActivity"
-            android:exported="true">
+        <activity android:name=".Main.MainActivity" />
+        <activity
+            android:name=".Splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +46,7 @@
             android:name=".SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="false" />
     </application>
 

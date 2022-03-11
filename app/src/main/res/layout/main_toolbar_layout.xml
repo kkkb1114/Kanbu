@@ -33,7 +33,10 @@
             android:layout_gravity="right"
             android:layout_marginRight="20dp"
             android:text="@string/connect"
+            android:textColor="#039BE5"
             android:onClick="moveFragment"
+            android:background="@drawable/button_2"
+            app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

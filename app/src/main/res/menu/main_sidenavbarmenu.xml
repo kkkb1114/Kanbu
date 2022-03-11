@@ -18,6 +18,6 @@
         android:id="@+id/setting"
         android:title="@string/setting"
         app:showAsAction="never"
-        android:icon="@drawable/_904675_configuration_edit_gear_options_preferences_setting_settings_122525"/>
+        android:icon="@drawable/ic_drawer_connection"/>
     </group>
 </menu>

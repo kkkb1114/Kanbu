@@ -23,15 +23,20 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="입력하세요."/>
+            android:layout_weight="9.9"
+            android:hint="입력하세요."
+            android:textColorHint="#1A000000"
+            android:background="@drawable/edittext_1"/>
 
         <Button
             android:id="@+id/bt_Diagnosis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#03A9F4"
+            android:layout_weight="0.1"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_3"
             android:text="@string/Confirm"
+            android:textColor="@color/white"
             android:textSize="15dp"
             app:backgroundTint="@null" />
 

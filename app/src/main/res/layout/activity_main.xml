@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Main.MainActivity"
     android:background="@color/white">
 
     <LinearLayout
@@ -30,6 +30,12 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:layout_gravity="left"
-        app:menu="@menu/main_sidenavbarmenu" />
+        app:menu="@menu/main_sidenavbarmenu"
+        android:background="@color/white"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:subheaderColor="@color/black"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

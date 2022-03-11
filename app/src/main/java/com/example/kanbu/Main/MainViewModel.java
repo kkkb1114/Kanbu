@@ -1,4 +1,4 @@
-package com.example.kanbu;
+package com.example.kanbu.Main;
 
 import android.view.View;
 

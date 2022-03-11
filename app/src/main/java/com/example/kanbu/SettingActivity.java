@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -17,8 +18,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     FirebaseAuth firebaseAuth;
     private GoogleSignInClient googleSignInClient;
 
-    Button Logout;
-    Button secession;
+    TextView Logout;
+    TextView secession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

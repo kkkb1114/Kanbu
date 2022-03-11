@@ -1,4 +1,4 @@
-package com.example.kanbu;
+package com.example.kanbu.Main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,7 +20,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kanbu.Diagnosis.DiagnosisFragment;
+import com.example.kanbu.Monitoring.MonitoringFragment;
+import com.example.kanbu.OBD_Connect.ConnectFragment;
+import com.example.kanbu.R;
+import com.example.kanbu.Setting.SettingFragment;
+import com.example.kanbu.Terminal.TerminalFragment;
+import com.example.kanbu.onBackPressedListener;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = this;
 
+        // MainActivity에 있는 뷰 세팅
         ViewSet();
+        // 프래그먼트 세팅
         setFragment();
     }
 
@@ -89,9 +100,6 @@ public class MainActivity extends AppCompatActivity {
         header_layout = navigationView.inflateHeaderView(R.layout.main_header_layout);
         drawerLayoutClose = header_layout.findViewById(R.id.iv_NavigationDrawer_close);
         setHeaderLayoutEvent();
-
-        // 프레그먼트 뷰 접근
-
     }
 
     // header_layout 아이템 클릭 이벤트
@@ -113,18 +121,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.myCarList:
-                        Toast.makeText(mContext,"myCarList", Toast.LENGTH_SHORT).show();
-                        item.setCheckable(true);
+                        moveFragmentSupport(new MonitoringFragment(), drawerLayout);
                         return true;
 
                     case R.id.connect:
-                        Toast.makeText(mContext,"connect", Toast.LENGTH_SHORT).show();
-                        item.setCheckable(true);
+                        moveFragmentSupport(new ConnectFragment(), drawerLayout);
                         return true;
 
                     case R.id.setting:
-                        Toast.makeText(mContext,"setting", Toast.LENGTH_SHORT).show();
-                        item.setCheckable(true);
+                        moveFragmentSupport(new SettingFragment(), drawerLayout);
                         return true;
 
                 }
@@ -159,37 +164,60 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fl_mainMenu, fg_main).commitAllowingStateLoss();
     }
 
+    // getSupportFragmentManager로 FragmentManager에 접근하여 addToBackStack로 프래그먼트 화면 스택을 쌓아준다. (뒤로가기 버튼 눌렀을때 바로 전 프래그먼트 화면을 띄우기 위해)
     // 프레그먼트 화면 변경 메소드
     public void moveFragment(View view){
         transaction = fragmentManager.beginTransaction();
 
         switch (view.getId()){
             case R.id.ln_main_monitoring:
-                transaction.replace(R.id.fl_mainMenu, fg_monitoring).commitAllowingStateLoss();
+                moveFragmentSupport(new MonitoringFragment(), null);
                 break;
             case R.id.ln_main_diagnosis:
-                transaction.replace(R.id.fl_mainMenu, fg_diagnosis).commitAllowingStateLoss();
+                moveFragmentSupport(new DiagnosisFragment(), null);
                 break;
             case R.id.ln_main_terminal:
-                transaction.replace(R.id.fl_mainMenu, fg_terminal).commitAllowingStateLoss();
+                moveFragmentSupport(new TerminalFragment(), null);
                 break;
             case R.id.ln_main_setting:
-                transaction.replace(R.id.fl_mainMenu, fg_setting).commitAllowingStateLoss();
-                break;
-            case R.id.tv_toolbar_title:
-                transaction.replace(R.id.fl_mainMenu, fg_main).commitAllowingStateLoss();
+                moveFragmentSupport(new SettingFragment(), null);
                 break;
             case R.id.bt_toolbar_connect:
-                transaction.replace(R.id.fl_mainMenu, fg_connent).commitAllowingStateLoss();
+                moveFragmentSupport(new ConnectFragment(), null);
                 break;
         }
     }
 
+    public void moveFragmentSupport(Fragment fragment, DrawerLayout drawerLayout){
+        if (drawerLayout == null){
+            this.getSupportFragmentManager().beginTransaction().replace(R.id.fl_mainMenu, fragment)
+                    .addToBackStack(null).commit();
+        }else {
+            this.getSupportFragmentManager().beginTransaction().replace(R.id.fl_mainMenu, fragment)
+                    .addToBackStack(null).commit();
+            drawerLayout.closeDrawers();
+        }
+    }
+
+
+    //todo 모든 프래그먼트는 전부 MainActivity에 쌓이는 것이기에 onBackPressed를 Override한 후 onBackPressed가 실행될때마다 프레그먼트 스택이 한번씩 돌게 만든다. (이게 맞는지는 아직 부정확함.)
     @Override
     public void onBackPressed() {
-        // 기존의 뒤로가기 버튼의 기능 제거
-        // super.onBackPressed();
 
+        // 프래그먼트 onBackPressedListener사용
+        // getSupportFragmentManager()를 이용하면 FragmentManager에 접근이 가능하다.
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        for (Fragment fragment : fragmentList){
+            //todo instanceof 연산자는 객체가 어떤 클래스인지, 어떤 클래스를 상속 받았는지 확인하는데 사용하는 연산자이다.
+            // 그럼으로 fragment가 onBackPressedListener를 상속 받았다면?? 이라는 조건문이 된다.
+            if (fragment instanceof onBackPressedListener){
+                ((onBackPressedListener)fragment).onBackPressed();
+                return;
+            }
+        }
+
+        // 기존의 뒤로가기 버튼의 기능 제거 (오버라이드)
+        // super.onBackPressed();
         // 2000 milliseconds = 2 seconds
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();

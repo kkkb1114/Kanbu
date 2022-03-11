@@ -1,36 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#0D039BE5">
+    tools:context=".SettingActivity"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/Logout"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#5903A9F4"
+        android:background="#03A9F4"
         android:padding="10dp"
-        android:text="@string/Logout"
+        android:text="@string/Connection_settings"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@+id/secession"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="20dp"/>
 
-    <Button
-        android:id="@+id/secession"
+    <View
         android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33000000"/>
+
+    <TextView
+        android:id="@+id/tv_settingConnect"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#5903A9F4"
         android:padding="10dp"
-        android:text="@string/secession"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:backgroundTint="@null"
+        android:text="@string/connect"
+        android:textSize="15dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33000000"/>
+
+    <TextView
+        android:id="@+id/tv_ProtocolSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/ProtocolSettings"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#03A9F4"
+        android:padding="10dp"
+        android:text="@string/Preferences"
+        android:textColor="@color/white"
+        android:textSize="20dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33000000"/>
+
+    <TextView
+        android:id="@+id/Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/Logout"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33000000"/>
+
+    <TextView
+        android:id="@+id/secession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/secession"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</LinearLayout>

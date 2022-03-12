@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -21,15 +22,13 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ViewHold
 
     ArrayList<String> deviceAddressList;
     ArrayList<String> deviceNameList;
-    ArrayList<ConnectViewModel> connectViewModelArrayList;
     Context context;
     
     // 생성자
     public ConnectAdapter(ArrayList<String> deviceAddressList, ArrayList<String> deviceNameList,
-                          ArrayList<ConnectViewModel> connectViewModelArrayList, Context context){
+                          Context context){
         this.deviceAddressList = deviceAddressList;
         this.deviceNameList = deviceNameList;
-        this.connectViewModelArrayList = connectViewModelArrayList;
         this.context = context;
     }
 
@@ -43,7 +42,7 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.bindItem(connectViewModelArrayList.get(position));
+        holder.bindItem(deviceAddressList.get(position), deviceNameList.get(position));
     }
 
     @Override
@@ -56,10 +55,9 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ViewHold
             super(itemView);
         }
 
-        public void bindItem(ConnectViewModel connectViewModel){
-            //
-           /* BluetoothconnectDeviceItemBinding bluetoothconnectDeviceItemBinding = DataBindingUtil.bind(itemView);
-            bluetoothconnectDeviceItemBinding.tvConnectDeviceName.setText(.);*/
+        public void bindItem(String deviceAddressList, String deviceNameList){
+            BluetoothconnectDeviceItemBinding bluetoothconnectDeviceItemBinding = DataBindingUtil.bind(itemView);
+            bluetoothconnectDeviceItemBinding.setConnectViewModel(new ConnectViewModel(context, deviceNameList, deviceAddressList, "연결 안됨"));
         }
     }
 }

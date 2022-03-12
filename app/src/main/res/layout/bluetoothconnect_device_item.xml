@@ -11,8 +11,10 @@
     </data>
 
 <LinearLayout
+    android:id="@+id/Ln_ConnectBluetooth"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:onClick="@{ConnectViewModel::changeConnectState}"
     android:orientation="vertical"
     android:background="#00039BE5">
 

@@ -3,35 +3,40 @@
     package="com.example.kanbu">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
 
     <!--안드로이드 12부터는 FINE만 요청하면 권한 요청 일부를 무시할 수가 있다.-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- 앱이 블루투스 기기를 찾는 경우에만 필요합니다.
-            이 권한에 속성을 추가하거나 다음을 선언해야 합니다.
-            ACCESS_FINE_LOCATION 권한, 결과에 따라
-            앱에서 위치 사용을 확인합니다. -->
+    <!-- android 12 add -->
+    <!-- Needed only if your app looks for Bluetooth devices.
+             If your app doesn't use Bluetooth scan results to derive physical
+             location information, you can strongly assert that your app
+             doesn't derive physical location. -->
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-
-    <!-- 앱이 블루투스에서 기기를 검색할 수 있도록 하는 경우에만 필요합니다.
-           장치. -->
+    <!-- Needed only if your app makes the device discoverable to Bluetooth
+      devices. -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-
-    <!-- 앱이 이미 페어링된 블루투스와 통신하는 경우에만 필요합니다.
-         장치. -->
+    <!-- Needed only if your app communicates with already-paired Bluetooth
+           devices. -->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <!--bibo01 : hardware option-->
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false"/>
+    <!-- android 12 add -->
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/Theme.Kanbu">
-        <activity android:name=".Main.MainActivity" />
+        <activity android:name=".Main.MainActivity"
+            android:exported="true"/>
         <activity
             android:name=".Splash.SplashActivity"
             android:exported="true"
@@ -43,11 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Login.LoginActivity"
-            android:exported="false" />
+            android:name=".Login.LoginActivity" />
     </application>
 
 </manifest>

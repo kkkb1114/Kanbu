@@ -1,6 +1,9 @@
 package com.example.kanbu;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
@@ -9,16 +12,24 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-public class ConnectViewModel extends ViewModel {
-    
-    public MutableLiveData<String> connectState = new MutableLiveData<>();
+public class ConnectViewModel {
+
+    public ObservableField<String> connectState = new ObservableField<>();
     public ObservableField<String> deviceName= new ObservableField<>();
     public ObservableField<String> deviceAddress= new ObservableField<>();
+    Context context;
 
-    public ConnectViewModel(String deviceName, String deviceAddress){
+    public ConnectViewModel(Context context, String deviceName, String deviceAddress, String connectState){
+        this.context = context;
         this.deviceName.set(deviceName);
         this.deviceAddress.set(deviceAddress);
-        // 연결 상태에 사용될 데이터 최초 삽입
-        connectState.setValue("연결 안됨");
+        this.connectState.set(connectState);
+    }
+
+    public void changeConnectState(View view){
+        Toast myToast = Toast.makeText(context,"클릭", Toast.LENGTH_SHORT);
+        myToast.show();
+        Log.i("클릭", "클릭");
+        connectState.set("연결됨");
     }
 }

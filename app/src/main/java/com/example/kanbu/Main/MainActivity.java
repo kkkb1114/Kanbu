@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
-
         // MainActivity에 있는 뷰 세팅
         ViewSet();
         // 프래그먼트 세팅

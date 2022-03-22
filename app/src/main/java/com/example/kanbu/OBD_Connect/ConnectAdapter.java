@@ -1,5 +1,6 @@
 package com.example.kanbu.OBD_Connect;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +23,15 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ViewHold
 
     ArrayList<String> deviceAddressList;
     ArrayList<String> deviceNameList;
+    BluetoothAdapter bluetoothAdapter;
     Context context;
     
     // 생성자
     public ConnectAdapter(ArrayList<String> deviceAddressList, ArrayList<String> deviceNameList,
-                          Context context){
+                          BluetoothAdapter bluetoothAdapter, Context context){
         this.deviceAddressList = deviceAddressList;
         this.deviceNameList = deviceNameList;
+        this.bluetoothAdapter = bluetoothAdapter;
         this.context = context;
     }
 
@@ -57,7 +60,7 @@ public class ConnectAdapter extends RecyclerView.Adapter<ConnectAdapter.ViewHold
 
         public void bindItem(String deviceAddressList, String deviceNameList){
             BluetoothconnectDeviceItemBinding bluetoothconnectDeviceItemBinding = DataBindingUtil.bind(itemView);
-            bluetoothconnectDeviceItemBinding.setConnectViewModel(new ConnectViewModel(context, deviceNameList, deviceAddressList, "연결 안됨"));
+            bluetoothconnectDeviceItemBinding.setConnectViewModel(new ConnectViewModel(context, deviceNameList, deviceAddressList, bluetoothAdapter,"연결 안됨"));
         }
     }
 }

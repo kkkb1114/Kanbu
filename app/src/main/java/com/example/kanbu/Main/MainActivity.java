@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,7 +25,7 @@ import com.example.kanbu.Monitoring.MonitoringFragment;
 import com.example.kanbu.OBD_Connect.ConnectFragment;
 import com.example.kanbu.R;
 import com.example.kanbu.Setting.SettingFragment;
-import com.example.kanbu.Terminal.TerminalFragment;
+import com.example.kanbu.DPF_Monitoring.DPF_MonitoringFragment;
 import com.example.kanbu.onBackPressedListener;
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private ConnectFragment fg_connent;
     private SettingFragment fg_setting;
     private MonitoringFragment fg_monitoring;
-    private TerminalFragment fg_terminal;
+    private DPF_MonitoringFragment fg_terminal;
     private DiagnosisFragment fg_diagnosis;
 
     private Context mContext;
@@ -121,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.myCarList:
-                        moveFragmentSupport(new MonitoringFragment(), drawerLayout);
+                        moveFragmentSupport(new DPF_MonitoringFragment(), drawerLayout);
+                        //moveFragmentSupport(new MonitoringFragment(), drawerLayout);
                         return true;
 
                     case R.id.connect:
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         fg_connent = new ConnectFragment();
         fg_setting = new SettingFragment();
         fg_monitoring = new MonitoringFragment();
-        fg_terminal = new TerminalFragment();
+        fg_terminal = new DPF_MonitoringFragment();
         fg_diagnosis = new DiagnosisFragment();
 
         transaction = fragmentManager.beginTransaction();
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                 moveFragmentSupport(new DiagnosisFragment(), null);
                 break;
             case R.id.ln_main_terminal:
-                moveFragmentSupport(new TerminalFragment(), null);
+                moveFragmentSupport(new DPF_MonitoringFragment(), null);
                 break;
             case R.id.ln_main_setting:
                 moveFragmentSupport(new SettingFragment(), null);

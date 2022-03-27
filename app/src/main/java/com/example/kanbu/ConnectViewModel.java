@@ -21,8 +21,8 @@ import java.util.UUID;
 public class ConnectViewModel {
 
     public ObservableField<String> connectState = new ObservableField<>();
-    public ObservableField<String> deviceName= new ObservableField<>();
-    public ObservableField<String> deviceAddress= new ObservableField<>();
+    public ObservableField<String> deviceName = new ObservableField<>();
+    public ObservableField<String> deviceAddress = new ObservableField<>();
     static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
     BluetoothAdapter bluetoothAdapter;
     Context context;

@@ -21,7 +21,7 @@ public class ConnectedThread extends Thread{
     // AT코드 순서
     public final String[] DefaultATCommandArray = new String[]{"ATZ","ATE0","ATD0","ATSP0","ATH1","ATM0","ATS0","ATAT1","ATST64"};
     // 차량 데이터 OBD2_PID
-    String Speed = "010D";
+    String speed = "010D";
 
     public ConnectedThread(BluetoothSocket bluetoothSocket){
         this.bluetoothSocket = bluetoothSocket;
@@ -41,41 +41,12 @@ public class ConnectedThread extends Thread{
     }
 
     public void run(){
-        byte[] buffer = new byte[1024]; // 스트림에 대한 버퍼 저장소
-        int bytes = 1024; // read()에서 반환된 바이트
+        final int bytes = 1024; // read()에서 반환된 바이트
+        final byte[] buffer = new byte[bytes]; // 스트림에 대한 버퍼 저장소
         byte temp = 0;
-
         //TODO AT 커맨드 세팅
         Set_ATCommand(buffer, bytes, temp);
 
-            //TODO 여기서부터 차량 데이터 수집
-        try {
-            write(Speed);
-            int read = inputStream.read(buffer, 0, bytes);
-            temp = (byte) read;
-            String strBuffer = new String(buffer, 0, temp,StandardCharsets.UTF_8);
-            // 여기서부터 반복문 시작
-            while (getDataCancel){
-                if (inputStream != null){
-                    // 지울것!!
-                    Log.i("strBuffer", strBuffer);
-                    if (strBuffer.equals(">")){
-                        read_stringBuilders.append(strBuffer);                                      // >만 왔다는 것은 ECU가 마지막 데이터를 보낸것이며 마지막 문자열을 더해준다.
-                        String result_read_stringBuilders = read_stringBuilders.toString();
-                        // 지울것!!
-                        Log.i("result_read_stringBuilders", result_read_stringBuilders);
-                        read_stringBuilders.delete(0, read_stringBuilders.length());                // 데이터를 뽑았으니 문자열을 쌓아놓은 stringBuilder를 초기화 시킨다.
-                        write(Speed);
-                    }else {
-                        // 지울것!!
-                        Log.i("No_strBuffer.equals", read_stringBuilders.toString());
-                        read_stringBuilders.append(strBuffer);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     // AT 커맨드 세팅
@@ -109,6 +80,57 @@ public class ConnectedThread extends Thread{
                             read_stringBuilders.append(strBuffer);
                             // 지울것!!
                             Log.i("read_stringBuilders", read_stringBuilders.toString());
+                        }
+                    }
+                }
+                //TODO AT 커맨드 끝나면 데이터 날림
+                if (i >=DefaultATCommandArray.length-1) {
+                    Log.i("read if", "read if");
+                    read();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void read(){
+
+        final int bytes2 = 1024; // read()에서 반환된 바이트
+        final byte[] buffer2 = new byte[bytes2]; // 스트림에 대한 버퍼 저장소
+        byte temp2 = 0;
+
+        //TODO 차량 데이터 수집
+        try {
+            // inputStream이 null이 아니라면 여기서부터 반복문 시작
+            if (inputStream != null){
+
+                write(speed + "\r"); // 처음에만 한번 날리고 돌아오는 데이터가 제대로 다 들어오면 그때 다음 데이터를 보낸다.
+
+                while (getDataCancel){
+                    int read = inputStream.read(buffer2, 0, bytes2);
+                    temp2 = (byte) read;
+                    String strBuffer = new String(buffer2, 0, temp2, StandardCharsets.UTF_8);
+                    // 지울것!!
+                    Log.i("strBuffer", strBuffer);
+                    if (strBuffer.equals(">")){
+                        read_stringBuilders.append(strBuffer);                                      // ">"만 왔다는 것은 ECU가 마지막 데이터를 보낸것이며 마지막 문자열을 더해주고 문자열로 만든다.
+                        String result_read_stringBuilders = read_stringBuilders.toString();
+                        // 지울것!!
+                        Log.i("result_read_stringBuilders", result_read_stringBuilders);
+                        read_stringBuilders.delete(0, read_stringBuilders.length());                // 데이터를 뽑았으니 문자열을 쌓아놓은 stringBuilder를 초기화 시킨다.
+                        write(speed + "\r");
+                    }else {
+                        if (strBuffer.contains(">")){
+                            String read_data_Builder_result = read_stringBuilders.toString();
+                            // 지울것!!
+                            Log.i("read_stringBuilders_delete", read_data_Builder_result);
+                            write(speed + "\r");                                              // ">"가 포함 되어있다는 것은 데이터가 전부 들어왔다는 것이기에 다음 데이터 전송
+                            read_stringBuilders.delete(0, read_stringBuilders.length());
+                        }else {
+                            // 지울것!!
+                            Log.i("No_strBuffer.equals", read_stringBuilders.toString());
+                            read_stringBuilders.append(strBuffer);
                         }
                     }
                 }

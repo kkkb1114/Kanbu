@@ -47,7 +47,6 @@ public class ConnectFragment extends Fragment implements onBackPressedListener {
     ArrayList<String> deviceAddressArray = new ArrayList<>();
     BluetoothAdapter bluetoothAdapter;
     private final static int REQUEST_ENABLE_BT = 1;
-    Context context;
 
 
     // MVVM 패턴 변수
